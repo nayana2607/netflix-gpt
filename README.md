@@ -5,6 +5,13 @@ Netflix like app with chat gpt features
 
 - Create React App
 - Configured TailwindCss
+- Header
+- Routing of the App
+- Login Form
+- Sign Up Form
+- Form Validation
+- useRef Hook
+- FireBase Setup
 
 
 # Features
