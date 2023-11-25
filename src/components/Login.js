@@ -1,6 +1,16 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { signUpValidate, validate } from "../utils/validate";
+import { useDispatch } from "react-redux";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -13,18 +23,65 @@ const Login = () => {
   const password = useRef(null);
   const cnfpwd = useRef(null);
   const name = useRef(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    let message = validate(email.current.value, password.current.value);
+    const emailValue = email.current.value;
+    const passwordValue = password.current.value;
+    let message = validate(emailValue, passwordValue);
     setErrorMessage(message);
 
-    if (!isSignInForm) {
+    if (!isSignInForm && !message) {
       message = signUpValidate(
         name.current.value,
         password.current.value,
         cnfpwd.current.value
       );
       setErrorMessage(message);
+    }
+
+    if (message) return;
+    if (!isSignInForm) {
+      console.log("Hurray");
+      createUserWithEmailAndPassword(auth, emailValue, passwordValue)
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL: "https://i.pinimg.com/564x/fb/8e/8a/fb8e8a96fca2f049334f312086a6e2f6.jpg",
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({ uid, email,displayName,photoURL })
+              );
+              console.log("Profile Updated");
+            })
+            .catch((error) => {
+              console.log("Oops something went wrong");
+            });
+          navigate("/browse");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorMessage);
+          // ..
+        });
+    } else {
+      signInWithEmailAndPassword(auth, emailValue, passwordValue)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          navigate("/browse");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorMessage);
+        });
     }
   };
 
