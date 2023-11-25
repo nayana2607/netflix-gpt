@@ -12,6 +12,10 @@ Netflix like app with chat gpt features
 - Form Validation
 - useRef Hook
 - FireBase Setup
+- Deploying to prod
+- Create Sign up USer Account
+- Implement Sign in User API
+- Created Store for user
 
 
 # Features
