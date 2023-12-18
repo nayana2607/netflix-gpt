@@ -1,26 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import {useDispatch} from 'react-redux'
+import { useDispatch } from "react-redux";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-import { removeUser } from "../utils/userSlice";
+import { onAuthStateChanged } from "firebase/auth";
+
+import { addUser, removeUser } from "../utils/userSlice";
 
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  const dispatch=useDispatch()
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photoURL } = user;
+        // ...
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL,
+          })
+        );
+        navigate("/browse");
+      } else {
+        // User is signed out
+        // ...
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+  }, []);
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => {
-        navigate("/");
-      })
+      .then(() => { })
       .catch((error) => {
         navigate("error");
       });
-      dispatch(removeUser())
-    
   };
   return (
     <div className="flex justify-between absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10">
@@ -32,15 +52,12 @@ const Header = () => {
 
       {user && (
         <div className="flex p-2">
-          {user.displayName}
-          <img
-            className="w-12 h-12"
-            src={user.photoURL}
-            alt="user-icon"
-          />
-          <button className="font-bold text-white" onClick={handleSignOut}>
-            Sign Out
-          </button>
+          <span>
+            <img className="w-12 h-12" src={user.photoURL} alt="user-icon" />
+            <button className="font-bold text-white" onClick={handleSignOut}>
+              Sign Out
+            </button>
+          </span>
         </div>
       )}
     </div>

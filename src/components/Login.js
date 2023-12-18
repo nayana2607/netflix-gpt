@@ -4,7 +4,6 @@ import { signUpValidate, validate } from "../utils/validate";
 import { useDispatch } from "react-redux";
 import {
   createUserWithEmailAndPassword,
-  getAuth,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
@@ -23,7 +22,6 @@ const Login = () => {
   const password = useRef(null);
   const cnfpwd = useRef(null);
   const name = useRef(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
@@ -50,22 +48,19 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL: "https://i.pinimg.com/564x/fb/8e/8a/fb8e8a96fca2f049334f312086a6e2f6.jpg",
+            photoURL:
+              "https://i.pinimg.com/564x/fb/8e/8a/fb8e8a96fca2f049334f312086a6e2f6.jpg",
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
-              dispatch(
-                addUser({ uid, email,displayName,photoURL })
-              );
+              dispatch(addUser({ uid, email, displayName, photoURL }));
               console.log("Profile Updated");
             })
             .catch((error) => {
               console.log("Oops something went wrong");
             });
-          navigate("/browse");
         })
         .catch((error) => {
-          const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorMessage);
           // ..
@@ -75,10 +70,8 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          navigate("/browse");
         })
         .catch((error) => {
-          const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorMessage);
         });

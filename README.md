@@ -16,6 +16,10 @@ Netflix like app with chat gpt features
 - Create Sign up USer Account
 - Implement Sign in User API
 - Created Store for user
+- Fetching movies from TMDB Movies
+- Protected Routes
+- Register TMDB API and create and app and get access tokne
+- Get Data from the API
 
 
 # Features
