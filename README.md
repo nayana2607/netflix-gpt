@@ -20,7 +20,13 @@ Netflix like app with chat gpt features
 - Protected Routes
 - Register TMDB API and create and app and get access tokne
 - Get Data from the API
-
+- Custom hook for now playing movie
+- Updated the store with movies data
+- Movie Slice Created
+- Updated Store with movies Data
+- Fetch data for trailer video
+- Update Store with trailer data
+- Embedded the youtube video, made it autoplay and mute
 
 # Features
 - Login/Sign-Up Page

@@ -8,7 +8,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+
 import { addUser } from "../utils/userSlice";
 
 const Login = () => {
@@ -41,7 +41,6 @@ const Login = () => {
 
     if (message) return;
     if (!isSignInForm) {
-      console.log("Hurray");
       createUserWithEmailAndPassword(auth, emailValue, passwordValue)
         .then((userCredential) => {
           // Signed up

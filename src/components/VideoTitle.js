@@ -1,13 +1,16 @@
-const VideoTitle = ({ title, overview }) => {
+
+
+const VideoTitle = ({ title, overview}) => {
+
   return (
-    <div className="pt-72 px-12">
+    <div className="pt-[30%] px-12 absolute text-white bg-gradient-to-r from-gray h-screen">
       <h1 className="text-6xl font-bold">{title}</h1>
       <h3 className="py-3 w-1/2 from-neutral-50">{overview}</h3>
       <div className="">
-        <button className="bg-white-500 text-black mx-2 p-4 px-16 text-xl bg-opacity-50 rounded-lg">
+        <button className="bg-white hover:bg-opacity-50 text-black mx-2 p-4 px-16 text-xl  rounded-lg">
           ▶️Play
         </button>
-        <button className="bg-gray-500 text-white mx-2  p-4  px-12 text-xl bg-opacity-100 rounded-lg">
+        <button className="bg-gray-500 hover:bg-opacity-50 text-white mx-2  p-4  px-12 text-xl  rounded-lg">
          ℹ️ More Info
         </button>
       </div>
