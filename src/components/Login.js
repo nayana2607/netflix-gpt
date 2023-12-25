@@ -53,7 +53,7 @@ const Login = () => {
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
               dispatch(addUser({ uid, email, displayName, photoURL }));
-              console.log("Profile Updated");
+          
             })
             .catch((error) => {
               console.log("Oops something went wrong");
