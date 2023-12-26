@@ -27,6 +27,14 @@ Netflix like app with chat gpt features
 - Fetch data for trailer video
 - Update Store with trailer data
 - Embedded the youtube video, made it autoplay and mute
+- Built Secondary container 
+- Built Movie List
+- Built Movie Card
+- usePopularMovies custom hook
+- GPT serach Page
+- GPT search Bar
+- (BONUS)Added Multi-language feature
+
 
 # Features
 - Login/Sign-Up Page

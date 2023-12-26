@@ -8,3 +8,8 @@ export const API_OPTIONS = {
 
   export const imageUrl=`https://image.tmdb.org/t/p/w780`
   
+export const supportedLanguages=[
+  {identifier:"en",language:"English"},
+  {identifier:"hd",language:"Hindi"},
+  {identifier:"sp",language:"Spanish"}
+]
