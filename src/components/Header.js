@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 
 import { addUser, removeUser } from "../utils/userSlice";
-import { toggleGPTSearchView } from "../utils/gptSlice";
+import { clearSlice, toggleGPTSearchView } from "../utils/gptSlice";
 import { supportedLanguages } from "../utils/constants";
 import { changeLanguage } from "../utils/appConfigSlice";
 
@@ -48,8 +48,10 @@ const Header = () => {
       });
   };
 
-  const handleGPTSearch = () => {
+  const handleGPTSearch = (e) => {
+    if(e.target.innerHTML==='Home Page')dispatch(clearSlice());
     dispatch(toggleGPTSearchView());
+
   };
 
   const handleChange = (e) => {
