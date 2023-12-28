@@ -34,7 +34,12 @@ Netflix like app with chat gpt features
 - GPT serach Page
 - GPT search Bar
 - (BONUS)Added Multi-language feature
-
+- Get open AI api key
+- GET search API call
+- fetch gptMoviesSuggestions for TMDB
+- Memoization
+- Add .env file
+- Fix styles
 
 # Features
 - Login/Sign-Up Page
