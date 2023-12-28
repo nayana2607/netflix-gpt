@@ -59,9 +59,9 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-between absolute w-screen px-8 py-2 bg-gradient-to-b from-gray z-10">
+    <div className="flex flex-col md:flex-row justify-between absolute w-screen px-8 py-2 bg-gradient-to-b from-gray z-10">
       <img
-        className="w-44"
+        className="w-44 mx-auto md:mx-0"
         src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
         alt="logo"
       />
@@ -82,15 +82,15 @@ const Header = () => {
           ) }
         
             <button
-              className=" px-4 m-2 bg-purple-500 text-white rounded-md"
+              className=" p-2 m-2 bg-purple-500 text-white rounded-md"
               onClick={handleGPTSearch}
             >
              {toogleGPTButton?"Home Page": "🔍GPT Search"}
             </button>
           
 
-          <img className="w-12 h-12" src={user.photoURL} alt="user-icon" />
-          <button className="font-bold text-white" onClick={handleSignOut}>
+          <img className="m-2 w-12 h-12" src={user.photoURL} alt="user-icon" />
+          <button className="p-2 m-2 font-bold text-white" onClick={handleSignOut}>
             Sign Out
           </button>
         </div>

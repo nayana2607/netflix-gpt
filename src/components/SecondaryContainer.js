@@ -7,7 +7,7 @@ const trendingmovies=useSelector(store=>store.movies?.trendingMovies)
   if (nowPlayingMovies === null||trendingmovies===null) return;
   return (
     <div className="bg-black">
-      <div className="-mt-52 pl-12 relative z-20">
+      <div className="mt-0 md:-mt-52 pl-4 md:pl-12 relative z-20">
 
         <MovieList type={"Now Playing"} movies={nowPlayingMovies} />
         <MovieList type={"Trending"} movies={trendingmovies} />
